@@ -2,8 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from web.forms import CategoriaForm, SubCategoriaForm
-from web.models import Categoria, SubCategoria
+from web.forms import CategoriaForm, MarcaForm, SubCategoriaForm
+from web.models import Categoria, Marca, SubCategoria
 
 
 class CategoriaView(LoginRequiredMixin, ListView):
@@ -77,3 +77,39 @@ class SubCategoriaDel(LoginRequiredMixin, DeleteView):
     template_name = 'web/subcategoria_delete.html'
     context_object_name = 'subcategoria'
     success_url = reverse_lazy('web:subcategorias_list')
+    
+class MarcaView(LoginRequiredMixin, ListView):
+    model = Marca
+    template_name = 'web/marcas_list.html'
+    context_object_name = 'marca'
+    login_url = 'base:login'
+
+class MarcaNew(LoginRequiredMixin, CreateView):
+    model = Marca
+    template_name = 'web/marca_form.html'
+    context_object_name = 'marca'
+    form_class = MarcaForm
+    success_url = reverse_lazy('web:marcas_list')
+    login_url = 'base:login'
+
+    def form_valid(self, form):
+        form.instance.uc = self.request.user
+        return super().form_valid(form)
+
+class MarcaEdit(LoginRequiredMixin, UpdateView):
+    model = Marca
+    template_name = 'web/marca_form.html'
+    context_object_name = 'marca'
+    form_class = MarcaForm
+    success_url = reverse_lazy('web:marcas_list')
+    login_url = 'base:login'
+
+    def form_valid(self, form):
+        form.instance.um = self.request.user.id
+        return super().form_valid(form)
+
+class MarcaDel(LoginRequiredMixin, DeleteView):
+    model = Marca
+    template_name = 'web/marca_delete.html'
+    context_object_name = 'marca'
+    success_url = reverse_lazy('web:marcas_list')

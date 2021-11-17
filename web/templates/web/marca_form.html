@@ -3,27 +3,27 @@
 {% block page_content %}
 <form method="POST" class="form-inline">{% csrf_token %}
     <div class="col-xl-6 col-md-6 mb-6">
-        <div class="card border-left-{% if subcategoria %}warning{% else %}success{% endif %} shadow h-100 py-2">
+        <div class="card border-left-{% if marca %}warning{% else %}success{% endif %} shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            {% if subcategoria %}Editar {% else %}Nueva {% endif %}SubCategoría
+                            {% if marca %}Editar {% else %}Nueva {% endif %}Marca
                         </div>
                         <div class="dropdown-divider"></div>
                         <div class="row">
                             <div class="col-10">
                                 <div class="input-group">
                                     <input type="text" name="descripcion" maxlength="100" class="form-control" required
-                                           id="id_descripcion" placeholder="Descripción de la subcategoría"
-                                           value="{% if subcategoria %}{{ subcategoria.descripcion }}{% endif %}">
+                                           id="id_descripcion" placeholder="Descripción de la marca"
+                                           value="{% if marca %}{{ marca.descripcion }}{% endif %}">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="form-group">
                                     <label for="id_estado">Estado</label>
                                     <input type="checkbox" name="estado" class="form-control" id="id_estado"
-                                    {% if subcategoria %} {{ subcategoria.estado }} {% else %} checked {% endif %}>
+                                    {% if marca %} {{ marca.estado }} {% else %} checked {% endif %}>
                                 </div>
                             </div>
                             <!--{{ form.as_p }}-->
@@ -31,8 +31,8 @@
                         <div class="dropdown-divider"></div>
                         <div class="row">
                             <div class="col">
-                                <button type="submit" class="btn btn-success"><span class="fa fa-save"></span>{% if subcategoria %}Actualizar{% else %}Guardar{% endif %}</button>
-                                <a href="{% url 'web:subcategorias_list' %}" class="btn btn-danger"><span class="fa fa-undo"></span>Cancelar</a>
+                                <button type="submit" class="btn btn-success"><span class="fa fa-save"></span>{% if marca %}Actualizar{% else %}Guardar{% endif %}</button>
+                                <a href="{% url 'web:marcas_list' %}" class="btn btn-danger"><span class="fa fa-undo"></span>Cancelar</a>
                             </div>
                         </div>
                     </div>
