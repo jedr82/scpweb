@@ -22,7 +22,7 @@ urlpatterns = [
     
     #Productos
     path('productos_list/', ProductoView.as_view(), name='productos_list'),
-    #path('producto_new/', MarcaNew.as_view(), name='producto_new'),
+    path('producto_new/', ProductoNew.as_view(), name='producto_new'),
     #path('producto_edit/<int:pk>', MarcaEdit.as_view(), name='producto_edit'),
     #path('producto_delete/<int:pk>', MarcaDel.as_view(), name='producto_delete'),
 ]

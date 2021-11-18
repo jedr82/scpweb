@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from web.forms import CategoriaForm, MarcaForm, SubCategoriaForm
+from web.forms import CategoriaForm, MarcaForm, ProductoForm, SubCategoriaForm
 from web.models import Categoria, Marca, Producto, SubCategoria
 
 
@@ -120,3 +120,15 @@ class ProductoView(LoginRequiredMixin, ListView):
     template_name = 'web/productos_list.html'
     context_object_name = 'producto'
     login_url = 'base:login'
+    
+class ProductoNew(LoginRequiredMixin, CreateView):
+    model = Producto
+    template_name = 'web/producto_form.html'
+    context_object_name = 'producto'
+    form_class = ProductoForm
+    success_url = reverse_lazy('web:productos_list')
+    login_url = 'base:login'
+
+    def form_valid(self, form):
+        form.instance.uc = self.request.user
+        return super().form_valid(form)
