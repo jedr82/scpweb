@@ -19,4 +19,10 @@ urlpatterns = [
     path('marca_new/', MarcaNew.as_view(), name='marca_new'),
     path('marca_edit/<int:pk>', MarcaEdit.as_view(), name='marca_edit'),
     path('marca_delete/<int:pk>', MarcaDel.as_view(), name='marca_delete'),
+    
+    #Productos
+    path('productos_list/', ProductoView.as_view(), name='productos_list'),
+    #path('producto_new/', MarcaNew.as_view(), name='producto_new'),
+    #path('producto_edit/<int:pk>', MarcaEdit.as_view(), name='producto_edit'),
+    #path('producto_delete/<int:pk>', MarcaDel.as_view(), name='producto_delete'),
 ]

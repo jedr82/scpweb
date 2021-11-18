@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from web.forms import CategoriaForm, MarcaForm, SubCategoriaForm
-from web.models import Categoria, Marca, SubCategoria
+from web.models import Categoria, Marca, Producto, SubCategoria
 
 
 class CategoriaView(LoginRequiredMixin, ListView):
@@ -109,7 +109,14 @@ class MarcaEdit(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 class MarcaDel(LoginRequiredMixin, DeleteView):
+    
     model = Marca
     template_name = 'web/marca_delete.html'
     context_object_name = 'marca'
     success_url = reverse_lazy('web:marcas_list')
+    
+class ProductoView(LoginRequiredMixin, ListView):
+    model = Producto
+    template_name = 'web/productos_list.html'
+    context_object_name = 'producto'
+    login_url = 'base:login'

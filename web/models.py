@@ -44,10 +44,11 @@ class Marca(ClaseModelo):
 
 class Producto(ClaseModelo):
     descripcion = models.CharField('Descripcion', max_length=100, help_text='Descripción del producto')
-    stock = models.IntegerField(default=0)
-    preciodistrib = models.IntegerField(default=0)
-    precioferret = models.IntegerField(default=0)
-    preciopubl = models.IntegerField(default=0)
+    stock = models.IntegerField('Stock', default=0)
+    preciodistrib = models.IntegerField('Distribuidor', default=0)
+    precioferret = models.IntegerField('Ferreteria', default=0)
+    preciopubl = models.IntegerField('Publico', default=0)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     subcategoria = models.ForeignKey(SubCategoria, on_delete=models.CASCADE)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
+    estado = models.BooleanField('Estado', default=True)
